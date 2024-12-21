@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Head, Link, router } from "@inertiajs/vue3";
 import ApplicationMark from "@/Components/ApplicationMark.vue";
 import Banner from "@/Components/Banner.vue";
+import Sidebar from "@/Components/Sidebar.vue";
 import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
@@ -37,11 +38,12 @@ const isActiveGrowth = () => usePage().url.startsWith("/growth");
 </script>
 
 <template>
+  
   <div>
     <Head :title="title" />
-
+    
     <Banner />
-
+    
     <div class="min-h-screen bg-gray-100">
       <nav class="bg-white border-b border-gray-100">
         <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -51,8 +53,9 @@ const isActiveGrowth = () => usePage().url.startsWith("/growth");
                 <Link :href="route('dashboard')">
                   <ApplicationMark class="block w-auto h-9" />
                 </Link>
+                
               </div>
-
+              
               <!-- Navigation Links -->
               <div class="hidden pt-4 space-x-1 sm:-my-px sm:ml-10 sm:flex">
                 <!-- Dashboard -->
@@ -254,7 +257,7 @@ const isActiveGrowth = () => usePage().url.startsWith("/growth");
                 </Dropdown>
               </div>
             </div>
-
+            
             <div class="hidden sm:flex sm:items-center sm:ml-6">
               <div class="relative ml-3">
                 <!-- Teams Dropdown -->
@@ -441,6 +444,7 @@ const isActiveGrowth = () => usePage().url.startsWith("/growth");
                 </svg>
               </button>
             </div>
+            
           </div>
         </div>
 
@@ -583,5 +587,7 @@ const isActiveGrowth = () => usePage().url.startsWith("/growth");
         <slot />
       </main>
     </div>
+    
   </div>
+  
 </template>
