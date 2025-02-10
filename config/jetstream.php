@@ -78,4 +78,29 @@ return [
 
     'profile_photo_disk' => 'public',
 
+    'permissions' => [
+        'create',
+        'read',
+        'update',
+        'delete',
+        'export',
+    ],
+    'roles' => [
+        'admin' => [
+            'create',
+            'read',
+            'update',
+            'delete',
+        ],
+        'editor' => [
+            'read',
+            'create',
+            'update',
+        ],
+        'user' => [
+            'read',
+            'export',
+        ],
+    ],
+
 ];
