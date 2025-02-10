@@ -66,7 +66,7 @@
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6 pb-4">
               <div class="flex h-16 shrink-0 items-center">
                 <Link :href="route('dashboard')">
-                  <ApplicationMark class="block w-auto h-9" />
+                  <h1 class="text-2xl font-bold text-white">Measuretank</h1>
                 </Link>
               </div>
         <nav class="flex flex-1 flex-col">
@@ -178,27 +178,36 @@ import {
   FolderIcon,
   HomeIcon,
   UsersIcon,
+  RocketLaunchIcon,
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import axios from 'axios';
 
 const navigation = [
-  { name: 'Dashboard', href: '#', icon: HomeIcon, current: true },
-  { name: 'Team', href: '#', icon: UsersIcon, current: false },
-  { name: 'Projects', href: '#', icon: FolderIcon, current: false },
-  { name: 'Calendar', href: '#', icon: CalendarIcon, current: false },
-  { name: 'Documents', href: '#', icon: DocumentDuplicateIcon, current: false },
-  { name: 'Reports', href: '#', icon: ChartPieIcon, current: false },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon, current: true },
+  { name: 'Projects', href: '/projects', icon: FolderIcon, current: false },
+  { name: 'Campaigns', href: '/campaigns', icon: CalendarIcon, current: false },
+  { name: 'Keywords', href: '/keywords', icon: DocumentDuplicateIcon, current: false },
+  { name: 'Pages', href: '/pages', icon: ChartPieIcon, current: false },
+  { name: 'Growth', href: '/growth', icon: RocketLaunchIcon, current: false }, // growth rekated icon from here https://heroicons.com/
 ]
-const teams = [
-  { id: 1, name: 'Heroicons', href: '#', initial: 'H', current: false },
-  { id: 2, name: 'Tailwind Labs', href: '#', initial: 'T', current: false },
-  { id: 3, name: 'Workcation', href: '#', initial: 'W', current: false },
-]
+const teams = ref([])
 const userNavigation = [
-  { name: 'Your profile', href: '#' },
+  { name: 'Profile', href: '/user/profile' },
   { name: 'Sign out', href: '#' },
 ]
 
 const sidebarOpen = ref(false)
+
+async function fetchTeams() {
+  try {
+    const response = await axios.get('/api/teams');
+    teams.value = response.data;
+  } catch (error) {
+    console.error('Error fetching teams:', error);
+  }
+}
+
+fetchTeams()
 </script>
